@@ -71,11 +71,12 @@
             text-transform: uppercase;
         }
         
-        /* PÄIVITETTY: Hero-tausta käyttää nyt mave.jpg-kuvaa */
+        /* PALAUTETTU: Hero-tausta käyttää nyt mave1.jpg-kuvaa ja cover-arvoa */
         .hero-bg {
-            background-image: linear-gradient(to bottom, rgba(13, 17, 23, 0.5), rgba(13, 17, 23, 1)), url('mave.jpg');
-            background-size: cover;
-            background-position: center 30%;
+            background-image: linear-gradient(to bottom, rgba(13, 17, 23, 0.5), rgba(13, 17, 23, 1)), url('mave1.jpg');
+            background-size: cover; /* Täyttää koko alueen */
+            background-repeat: no-repeat;
+            background-position: center center; /* Keskittää kuvan */
             background-attachment: fixed;
         }
 
@@ -259,7 +260,7 @@
             <i class="fas fa-chevron-down text-xl"></i>
         </div>
     </section>
-
+    
     <!-- Moving Text Banner -->
     <div class="bg-brand-red py-2 sm:py-3 overflow-hidden border-y border-gray-700 transform -skew-y-1 relative z-20">
         <div class="marquee-container font-heading text-black font-bold text-base sm:text-xl tracking-widest uppercase">
@@ -358,9 +359,9 @@
                     <div class="absolute -bottom-3 -right-3 w-full h-full bg-brand-dark rounded-xl z-0 hidden md:block"></div>
                     
                     <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl h-[400px] sm:h-[500px] w-full group">
-                        <!-- PÄIVITETTY: Kuva Fanni Savela (Deadlift/mave.jpg) -->
-                        <img src="haba.jpg" 
-                             alt="Fanni Savela Deadlift" 
+                        <!-- PÄIVITETTY: Kuva Fanni Savela (kyykky.jpg) -->
+                        <img src="kyykky.jpg" 
+                             alt="Fanni Savela Kyykky" 
                              onerror="this.onerror=null;this.src='https://placehold.co/800x500/888888/0D1117?text=FANNI+SAVELA';" 
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -390,7 +391,7 @@
                         <!-- Stat 2 -->
                         <div class="glass-card p-4 sm:p-6 rounded-lg border border-gray-800 hover:border-brand-red transition duration-300">
                             <div class="flex items-center mb-2">
-                                <i class="fas fa-trophy text-brand-red text-base mr-2"></i>
+                                <i class="fas fa-trophy text-brand-red text-xl mr-2"></i>
                                 <h4 class="text-white font-bold font-heading uppercase tracking-wide text-sm">Kisamenestys</h4>
                             </div>
                             <p class="text-gray-400 text-xs">3x SM-Kulta, 5x Maajoukkue-edustus (MM/EM), useita SE-tuloksia.</p>
@@ -456,7 +457,7 @@
                     <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Arvostan eniten joustavuutta. Kiireisenä yrittäjänä treenit on pakko sovittaa muuhun elämään."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs">VS</div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">VS</div>
                         <div class="ml-3"><div class="font-bold text-xs text-white">Veera Salmi</div></div>
                     </div>
                 </div>
@@ -465,7 +466,7 @@
                     <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Tekniikkapaja avasi silmäni penkkipunnerruksen suhteen. Pienillä asentokorjauksilla sain heti 5kg lisää."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs">TT</div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">TT</div>
                         <div class="ml-3"><div class="font-bold text-xs text-white">Tuomas T.</div></div>
                     </div>
                 </div>
