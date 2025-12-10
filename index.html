@@ -71,7 +71,7 @@
             text-transform: uppercase;
         }
         
-        /* Poistettu .hero-bg, käytetään inline-CSS Hero-osiossa */
+        /* Poistettu .hero-bg, käytetään <video> Hero-osiossa */
 
         /* LIQUID GLASS -TAUSTA navigaatioon ja muihin osiin */
         .glass-nav {
@@ -169,7 +169,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
         }
-        
+
         /* Video taustan tyylit */
         .video-container {
             position: absolute;
@@ -189,7 +189,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            object-fit: cover; /* Korvaa 'cover' arvon CSS:ssä */
+            object-fit: cover; 
         }
     </style>
 </head>
@@ -324,7 +324,7 @@
         <!-- Video Container -->
         <div class="video-container">
             <video autoplay loop muted playsinline poster="mave1.jpg">
-                <!-- Varmista, että nämä tiedostot ovat ladattuna samassa kansiossa -->
+                <!-- Käytä antamiasi videon tiedostonimiä -->
                 <source src="mave_tausta.mp4" type="video/mp4">
                 <source src="mave_tausta.webm" type="video/webm">
                 <!-- Jos selain ei tue videota, näytetään staattinen kuva mave1.jpg -->
@@ -409,11 +409,7 @@
 
                 <!-- Service 2: Etävalmennus ruokavaliolla -->
                 <div class="service-card glass-card p-6 sm:p-8 rounded-xl border-2 border-brand-red relative transform md:-translate-y-6 shadow-[0_0_30px_rgba(136,136,136,0.15)] reveal reveal-delay-200 flex flex-col z-20">
-                    <!-- KORJATTU: Harmaa gradientti -->
-                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-brand-red to-transparent"></div>
-                    <div class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-brand-red/20 text-brand-red px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase border border-brand-red/30">
-                        Suosituin
-                    </div>
+                    
                     <div class="mt-4 sm:mt-6 mb-3 sm:mb-4">
                         <h4 class="text-xl sm:text-3xl font-bold text-white">Etävalmennus ruokavaliolla</h4>
                     </div>
