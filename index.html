@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SavelaStrength - Voimanostovalmennus</title>
     
-    <!-- Tailwind CSS (CDN) -->
+    <!-- TAILWIND CSS (OPTIMOITU) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (OPTIMOITU: Esiladattu) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome Icons (OPTIMOITU: Välitön lataus) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Kustomoidut tyylit Tailwindin konfiguraatiolla -->
     <script>
         tailwind.config = {
@@ -54,9 +57,6 @@
             }
         }
     </script>
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* Custom CSS lisäyksiä */
@@ -170,7 +170,7 @@
             transition: max-height 0.3s ease-in-out;
         }
 
-        /* Video taustan tyylit */
+        /* KORJAUS: Video taustan tyylit */
         .video-container {
             position: absolute;
             top: 0;
@@ -181,15 +181,32 @@
             z-index: 0;
         }
         .video-container video {
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            /* TÄRKEÄ KORJAUS: Varmista, että video peittää koko alueen oikein */
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
             object-fit: cover; 
+        }
+        
+        /* KORJATTU: Evästeilmoitus tyyli */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background-color: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid #1F2937;
+            /* Ylhäältä piilotettu: 
+            transform: translateY(100%); */
+            transition: transform 0.5s ease-out;
+            transform: translateY(100%);
+        }
+        .cookie-banner.show {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -197,6 +214,21 @@
     
     <!-- JavaScript Functions -->
     <script>
+        // Funktio tallentaa evästesuostumuksen (käyttää localStoragea, koska Firestorea ei käytetä tässä toiminnossa)
+        function acceptCookies() {
+            localStorage.setItem('savelaStrengthCookiesAccepted', 'true');
+            // KORJATTU: Käytetään classList.remove ja CSS-siirtymää piilottamiseen
+            document.getElementById('cookie-banner').classList.remove('show');
+        }
+
+        function checkCookies() {
+            if (localStorage.getItem('savelaStrengthCookiesAccepted') !== 'true') {
+                document.getElementById('cookie-banner').classList.add('show');
+            }
+        }
+        
+        window.onload = checkCookies; // Tarkistaa evästeet sivun latautuessa
+        
         // Toggle Read More Functionality
         function toggleReadMore(elementId, btn) {
             const content = document.getElementById(elementId);
@@ -263,6 +295,7 @@
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => observer.observe(el));
         });
+        
     </script>
     <!-- End JavaScript Functions -->
 
@@ -321,7 +354,7 @@
     <!-- Hero Section (WITH VIDEO BACKGROUND) -->
     <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden">
         
-        <!-- Video Container -->
+        <!-- Video Container (FIXED FOR FULL COVERAGE) -->
         <div class="video-container">
             <video autoplay loop muted playsinline poster="mave1.jpg">
                 <!-- Käytä antamiasi videon tiedostonimiä -->
@@ -723,98 +756,6 @@
                         <div class="ml-3"><div class="font-bold text-xs text-white">Aleksi P.</div></div>
                     </div>
                 </div>
-
-                <!-- DUPLICATE CARDS FOR LOOP (Seamless scrolling) -->
-                 <!-- 1 -->
-                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Yhteistyö on ollut käänteentekevä. Kyykkytulokseni nousi 20kg kolmessa kuukaudessa."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">AJ</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Antti Jokinen</div></div>
-                    </div>
-                </div>
-                <!-- 2 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Arvostan eniten joustavuutta. Kiireisenä yrittäjänä treenit on pakko sovittaa muuhun elämään."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">VS</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Veera Salmi</div></div>
-                    </div>
-                </div>
-                <!-- 3 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Tekniikkapaja avasi silmäni penkkipunnerruksen suhteen. Pienillä asentokorjauksilla sain heti 5kg lisää."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">TT</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Tuomas T.</div></div>
-                    </div>
-                </div>
-                <!-- 4 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ensimmäiset voimanostokisat takana ja yhteistulos parani 40kg. Valmentaja oli tukena koko matkan."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">ML</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Maija Laitinen</div></div>
-                    </div>
-                </div>
-                <!-- 5 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-60om transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">TM</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Timo M.</div></div>
-                    </div>
-                </div>
-                <!-- 6 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Olen oppinut treenaamaan kovaa, mutta fiksusti. Palautuminen on parantunut huomattavasti."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">HK</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Heidi Kärki</div></div>
-                    </div>
-                </div>
-                <!-- 7 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"50-vuotiaana paras päätös oli ottaa valmentaja. Olen elämäni kunnossa."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">RV</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Risto Virtanen</div></div>
-                    </div>
-                </div>
-                <!-- 8 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Hybridivalmennus on täydellinen yhdistelmä. Live-treenit tuovat varmuutta tekemiseen."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">NS</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Niina Salo</div></div>
-                    </div>
-                </div>
-                <!-- 9 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Videoanalyysit ovat kultaakin kalliimpia. Pienet virheet korjataan heti pois."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">VK</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Valtteri K.</div></div>
-                    </div>
-                </div>
-                <!-- 10 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
-                    <div class="text-brand-red text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Selkäkivut hävisivät kokonaan oikealla maastavetotekniikalla."</p>
-                    <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold">AP</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Aleksi P.</div></div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -858,88 +799,13 @@
             <p class="text-gray-600 text-xs sm:text-sm">© 2023 SavelaStrength Valmennus. Kaikki oikeudet pidätetään.</p>
         </div>
     </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const nav = document.getElementById('navbar');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                nav.classList.add('bg-brand-dark'); 
-            } else {
-                menu.classList.add('hidden');
-            }
-        }
-
-        // Toggle Read More Functionality
-        function toggleReadMore(elementId, btn) {
-            const content = document.getElementById(elementId);
-            
-            // Check if currently open
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                btn.innerText = "Lue Lisää";
-            } else {
-                // Optional: Close others for cleaner UI
-                const allContents = document.querySelectorAll('.expand-content');
-                const allBtns = document.querySelectorAll('button');
-                allContents.forEach(c => c.classList.remove('open'));
-                allBtns.forEach(b => {
-                    if(b.innerText === "Sulje") b.innerText = "Lue Lisää";
-                });
-                
-                content.classList.add('open');
-                btn.innerText = "Sulje";
-            }
-        }
-
-        // UKK Accordion Toggle
-        function toggleAccordion(id) {
-            const content = document.getElementById(id);
-            const icon = document.querySelector(`[data-icon="${id}"]`);
-            const isOpen = content.classList.contains('open');
-
-            // Sulje kaikki muut
-            document.querySelectorAll('.accordion-content').forEach(item => {
-                item.classList.remove('open');
-                item.style.maxHeight = '0';
-            });
-            document.querySelectorAll('.fas.fa-chevron-down').forEach(item => {
-                item.style.transform = 'rotate(0deg)';
-            });
-
-            if (!isOpen) {
-                content.classList.add('open');
-                // Aseta korkeus vasta elementin näkyvyyden jälkeen
-                setTimeout(() => {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }, 10); 
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
-
-
-        // --- Scroll Animation Observer ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
-
-            const revealElements = document.querySelectorAll('.reveal');
-            revealElements.forEach(el => observer.observe(el));
-        });
-    </script>
-</body>
-</html>
+    
+    <!-- COOKIE CONSENT BANNER (GDPR) -->
+    <div id="cookie-banner" class="cookie-banner p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
+        <p class="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-0 max-w-lg">
+            Käytämme sivustolla evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme liikennettä. Jatkamalla hyväksyt evästeiden käytön.
+        </p>
+        <button onclick="acceptCookies()" class="w-full sm:w-auto bg-white text-black hover:bg-gray-200 font-bold py-2 px-4 rounded transition duration-200 text-sm">
+            Hyväksyn evästeet
+        </button>
+    </div>
