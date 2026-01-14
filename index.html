@@ -10,7 +10,7 @@
     <!-- TAILWIND CSS (OPTIMOITU) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (OPTIMOITU: Esiladattu) -->
+    <!-- Google Fonts (OPTIMOITU: Esiladattu + display=swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
                         },
                         scroll: {
                             '0%': { transform: 'translateX(0)' },
-                            /* PÄIVITETTY: Laskukaava 5 kortille */
+                            /* LASKUKAAVA 5 KORTILLE */
                             '100%': { transform: 'translateX(calc(-350px * 5 - 2rem * 5))' }, 
                         }
                     }
@@ -236,14 +236,12 @@
                         <a href="#testimonials" class="hover:text-brand-red px-2 py-1 rounded-md text-sm font-medium transition relative group">Kokemuksia
                              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <!-- MUUTETTU: bg-brand-red -> bg-white, hover-efektiä säädetty -->
                         <a href="#contact" class="bg-white hover:bg-gray-200 text-black px-3 py-2 rounded-md text-sm font-medium transition shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transform hover:-translate-y-0.5">
                             <i class="fas fa-envelope mr-2"></i>Ota Yhteyttä
                         </a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <!-- ACCESSIBILITY FIX: Added aria-label -->
                     <button onclick="toggleMenu()" type="button" aria-label="Avaa mobiilivalikko" class="glass-card inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
@@ -269,9 +267,8 @@
         <!-- Video Container (FIXED FOR FULL COVERAGE) -->
         <div class="video-container">
             <video autoplay loop muted playsinline poster="mave1.jpg">
-                <!-- TÄRKEÄÄ: WebM ensin, koska se on kevyempi (1MB). Selaimet ottavat ensimmäisen toimivan. -->
+                <!-- TÄRKEÄ OPTIMOINTI: WebM ensin (pienempi tiedosto), sitten MP4 -->
                 <source src="mave_tausta.webm" type="video/webm">
-                <!-- MP4 toisena varalta (esim. vanhat iPhonet), jos WebM ei toimi -->
                 <source src="mave_tausta.mp4" type="video/mp4">
             </video>
         </div>
@@ -282,27 +279,21 @@
         <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl animate-pulse z-20"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse z-20" style="animation-delay: 1s;"></div>
 
-        <!-- KORJATTU: Sisältö sovitettu paremmin pienille (320x568) näytöille -->
         <div class="relative z-30 text-center px-4 max-w-5xl mx-auto pt-20 sm:pt-24 pb-4 sm:pb-8">
             
-            <!-- MUUTETTU: text-brand-red -> text-white -->
             <h2 class="text-white font-bold tracking-widest sm:tracking-[0.3em] mb-2 sm:mb-4 text-[0.65rem] sm:text-sm md:text-base animate-[fadeInDown_1s_ease-out]">
                 VOIMANOSTAJA JA VALMENTAJA FANNI SAVELA
             </h2>
             
-            <!-- KORJATTU: Pääotsikon koko pienennetty 3xl:ään mobiilissa -->
             <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl animate-[fadeInUp_1s_ease-out_0.3s_both]">
                SAVELASTRENGTH  <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-white">SAVELASTRENGTH</span><br /> SAVELASTRENGTH
             </h1>
             
-            <!-- KORJATTU: Marginaali ja tekstikoko optimoitu -->
             <p class="text-sm sm:text-lg mb-5 sm:mb-8 max-w-2xl mx-auto animate-[fadeInUp_1s_ease-out_0.6s_both] font-light leading-relaxed">
                 Yksilöllistä valmennusta kohti vahvempaa ja toimivampaa kehoa, tavoitteesi mukaisesti.
             </p>
             
-            <!-- KORJATTU: Nappien koot ja välit tiivistetty mobiiliin -->
             <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 animate-[fadeInUp_1s_ease-out_0.9s_both]">
-                <!-- MUUTETTU: bg-brand-red -> bg-white, hover:bg-gray-700 -> hover:bg-gray-200 -->
                 <a href="#contact" class="group relative bg-white hover:bg-gray-200 text-black text-sm sm:text-base px-5 py-2.5 sm:px-6 sm:py-3 rounded font-bold uppercase tracking-wide overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                     <span class="relative z-10 group-hover:scale-110 inline-block transition-transform duration-300">Aloita Valmennus</span>
                     <div class="absolute inset-0 h-full w-full bg-gray-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -313,9 +304,7 @@
             </div>
         </div>
 
-        <!-- KORJATTU: Nuoli keskitetty varmemmin 'w-full flex justify-center' avulla -->
         <div class="absolute bottom-5 w-full flex justify-center z-30 animate-bounce">
-            <!-- ACCESSIBILITY FIX: Added aria-label though it's decorative -->
             <i class="fas fa-chevron-down text-xl text-white/50" aria-hidden="true"></i>
         </div>
     </section>
@@ -355,7 +344,6 @@
                     
                     <button onclick="toggleReadMore('more-1', this)" class="inline-block text-center w-full border border-gray-700 hover:border-brand-red text-white py-2 rounded font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-brand-red transition duration-300">Lue Lisää</button>
                     
-                    <!-- Hidden Content (KORJATTU: Content now inside div with class=expand-content) -->
                     <div id="more-1" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
                         <p>Yksilöllinen treenien ohjelmointi sinun tavoitteiden mukaan. Step2fit sovellus treenien kirjaamista ja seurantaa varten, jossa myös liikkeiden ohjevideot. Tekniikoiden analysointi ja ohjeistus etänä, sekä erilliset tekniikkavideot tarvittaessa. </p>
                         <p>Valmentajan jatkuva tuki whatsappin välityksellä.
@@ -378,10 +366,8 @@
                         Yksilöllinen treenien ohjelmointi + ruokavalio, sisältäen valmentajan tuen ja seurannan.
                     </p>
                     
-                    <!-- MUUTETTU: bg-brand-red -> bg-white, hover efektit päivitetty -->
                     <button onclick="toggleReadMore('more-2', this)" class="w-full bg-white hover:bg-gray-200 text-black py-3 rounded font-bold uppercase text-sm tracking-wide transition shadow-lg hover:shadow-white/40">Lue Lisää</button>
                     
-                    <!-- Hidden Content (KORJATTU: Content now inside div with class=expand-content) -->
                     <div id="more-2" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
                         <p>Yksilöllinen treenien ohjelmointi sekä ruokavalio sinun tavoitteiden mukaan. Step2fit sovellus treenien kirjaamista ja seurantaa varten, missä myös liikkeiden ohjevideot. Tekniikoiden analysointi ja ohjeistus etänä, sekä erilliset tekniikkavideot tarvittaessa.</p>
                         <p>Valmentajan jatkuva tuki whatsappin välityksellä.</p>
@@ -400,7 +386,6 @@
                     
                     <button onclick="toggleReadMore('more-3', this)" class="inline-block text-center w-full border border-gray-700 hover:border-brand-red text-white py-2 rounded font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-brand-red transition duration-300">Lue Lisää</button>
                     
-                    <!-- Hidden Content (KORJATTU: Content now inside div with class=expand-content) -->
                     <div id="more-3" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
                         <p> Kahdeksan viikon kestoinen treeniohjelma yksilöllisesti sinun tavoitteiden mukaan. 8 vk. jälkeen voit ostaa uudestaan tämän 8 vk. ohjelman, jolloin teen uuden ohjelman aiemman pohjalta, huomioiden aiemman 8 vk. treenien etenemisen. 
 </p>
@@ -427,9 +412,10 @@
                     <div class="absolute -bottom-3 -right-3 w-full h-full bg-brand-dark rounded-xl z-0 hidden md:block"></div>
                     
                     <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl h-[350px] sm:h-[500px] w-full group">
-                        <!-- PÄIVITETTY: Kuva Fanni Savela (kyykky.jpg) -->
+                        <!-- TÄRKEÄ OPTIMOINTI: Width ja Height lisätty estämään hyppimistä (CLS) -->
                         <img src="kyykky.jpg" 
                              alt="Fanni Savela Kyykky" 
+                             width="800" height="500"
                              onerror="this.onerror=null;this.src='https://placehold.co/800x500/888888/0D1117?text=FANNI+SAVELA';" 
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -507,12 +493,10 @@
                 
                 <!-- FAQ Item 1 -->
                 <div class="glass-card rounded-xl">
-                    <!-- ACCESSIBILITY FIX: Added aria-expanded and id for controls -->
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-1')" aria-expanded="false" aria-controls="faq-1">
                         <span>1. Kenelle valmennus sopii?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-1" aria-hidden="true"></i>
                     </button>
-                    <!-- KORJATTU: Sisältö piilossa max-height: 0:lla -->
                     <div id="faq-1" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
                             <p class="text-gray-400 text-sm leading-relaxed pt-2">
@@ -682,7 +666,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     </div>
                 </div>
 
-                <!-- DUPLICATE CARDS FOR LOOP (Seamless scrolling) - UPDATED TO 5 CARDS -->
+                <!-- DUPLICATE CARDS FOR LOOP (Seamless scrolling) -->
                  <!-- 1 -->
                  <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
@@ -747,7 +731,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Sähköposti-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fas fa-envelope text-xl text-brand-red" aria-hidden="true"></i>
+                        <i class="fas fa-envelope text-xl text-brand-red"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Sähköposti</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4 break-all">savelastrength@gmail.com</p>
@@ -760,13 +744,13 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Instagram-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fab fa-instagram text-xl text-brand-red" aria-hidden="true"></i>
+                        <i class="fab fa-instagram text-xl text-brand-red"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Instagram</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4">@fannisavela</p>
                     <!-- ACCESSIBILITY FIX: Added aria-label -->
                     <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Seuraa Fanni Savelaa Instagramissa" class="border border-white hover:bg-white hover:text-black text-white px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full">
-                        Tutustu
+                        Seuraa
                     </a>
                 </div>
             </div>
@@ -784,6 +768,10 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Instagram-linkki -->
                 <!-- ACCESSIBILITY FIX: Added aria-label -->
                 <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl" aria-hidden="true"></i></a>
+                <!-- ACCESSIBILITY FIX: Added aria-label -->
+                <a href="#" aria-label="Facebook" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-facebook text-xl sm:text-2xl" aria-hidden="true"></i></a>
+                <!-- ACCESSIBILITY FIX: Added aria-label -->
+                <a href="#" aria-label="YouTube" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-youtube text-xl sm:text-2xl" aria-hidden="true"></i></a>
             </div>
             <p class="text-gray-600 text-xs sm:text-sm">© 2025 SavelaStrength Valmennus. Kaikki oikeudet pidätetään.</p>
         </div>
@@ -912,5 +900,3 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
     </script>
 </body>
 </html>
-
-
