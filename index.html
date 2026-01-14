@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: Meta-kuvaus hakukoneille -->
+    <meta name="description" content="SavelaStrength - Fanni Savelan yksilöllistä voimanostovalmennusta ja fysiikkaharjoittelua. Saavuta tavoitteesi ammattilaisen tuella.">
     <title>SavelaStrength - Voimanostovalmennus</title>
     
     <!-- TAILWIND CSS (OPTIMOITU) -->
@@ -50,7 +52,7 @@
                         },
                         scroll: {
                             '0%': { transform: 'translateX(0)' },
-                            /* PÄIVITETTY: Laskukaava muutettu 5 kortille (aiemmin 10) */
+                            /* PÄIVITETTY: Laskukaava 5 kortille */
                             '100%': { transform: 'translateX(calc(-350px * 5 - 2rem * 5))' }, 
                         }
                     }
@@ -72,8 +74,6 @@
             text-transform: uppercase;
         }
         
-        /* Poistettu .hero-bg, käytetään <video> Hero-osiossa */
-
         /* LIQUID GLASS -TAUSTA navigaatioon ja muihin osiin */
         .glass-nav {
             background-color: rgba(13, 17, 23, 0.7); /* Tumma läpikuultava tausta */
@@ -243,7 +243,8 @@
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <button onclick="toggleMenu()" type="button" class="glass-card inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+                    <!-- ACCESSIBILITY FIX: Added aria-label -->
+                    <button onclick="toggleMenu()" type="button" aria-label="Avaa mobiilivalikko" class="glass-card inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -268,10 +269,10 @@
         <!-- Video Container (FIXED FOR FULL COVERAGE) -->
         <div class="video-container">
             <video autoplay loop muted playsinline poster="mave1.jpg">
-                <!-- Käytä antamiasi videon tiedostonimiä -->
-                <source src="mave_tausta.mp4" type="video/mp4">
+                <!-- TÄRKEÄÄ: WebM ensin, koska se on kevyempi (1MB). Selaimet ottavat ensimmäisen toimivan. -->
                 <source src="mave_tausta.webm" type="video/webm">
-                <!-- Jos selain ei tue videota, näytetään staattinen kuva mave1.jpg -->
+                <!-- MP4 toisena varalta (esim. vanhat iPhonet), jos WebM ei toimi -->
+                <source src="mave_tausta.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -314,7 +315,8 @@
 
         <!-- KORJATTU: Nuoli keskitetty varmemmin 'w-full flex justify-center' avulla -->
         <div class="absolute bottom-5 w-full flex justify-center z-30 animate-bounce">
-            <i class="fas fa-chevron-down text-xl text-white/50"></i>
+            <!-- ACCESSIBILITY FIX: Added aria-label though it's decorative -->
+            <i class="fas fa-chevron-down text-xl text-white/50" aria-hidden="true"></i>
         </div>
     </section>
     
@@ -505,9 +507,10 @@
                 
                 <!-- FAQ Item 1 -->
                 <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-1')">
+                    <!-- ACCESSIBILITY FIX: Added aria-expanded and id for controls -->
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-1')" aria-expanded="false" aria-controls="faq-1">
                         <span>1. Kenelle valmennus sopii?</span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-1"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-1" aria-hidden="true"></i>
                     </button>
                     <!-- KORJATTU: Sisältö piilossa max-height: 0:lla -->
                     <div id="faq-1" class="accordion-content">
@@ -522,9 +525,9 @@
 
                 <!-- FAQ Item 2 -->
                 <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-2')">
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-2')" aria-expanded="false" aria-controls="faq-2">
                         <span>2. Täytyykö minun kilpailla?</span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-2"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-2" aria-hidden="true"></i>
                     </button>
                     <div id="faq-2" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
@@ -536,9 +539,9 @@
                 </div>
                  <!-- FAQ Item 7 -->
                  <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-7')">
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-7')" aria-expanded="false" aria-controls="faq-7">
                         <span>3. Koostuuko treenit ainoastaan voimanostoliikkeistä?</span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-7"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-7" aria-hidden="true"></i>
                     </button>
                     <div id="faq-7" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
@@ -550,9 +553,9 @@
                 </div>
                 <!-- FAQ Item 3 -->
                 <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-3')">
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-3')" aria-expanded="false" aria-controls="faq-3">
                         <span>4. Miten yhteydenpito toimii etävalmennuksessa?</span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-3"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-3" aria-hidden="true"></i>
                     </button>
                     <div id="faq-3" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
@@ -566,9 +569,9 @@
 
                 <!-- FAQ Item 4 -->
                 <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-4')">
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-4')" aria-expanded="false" aria-controls="faq-4">
                         <span>5. Onko valmennuksessa määräaikaa?</span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-4"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-4" aria-hidden="true"></i>
                     </button>
                     <div id="faq-4" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
@@ -582,9 +585,9 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
 
                     <!-- FAQ Item 5 -->
                 <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-6')">
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-6')" aria-expanded="false" aria-controls="faq-6">
                         <span>6. Voinko muuttaa pakettia myöhemmin?</span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-6"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-6" aria-hidden="true"></i>
                     </button>
                     <div id="faq-6" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
@@ -597,9 +600,9 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
 
                 <!-- FAQ Item 6 -->
                 <div class="glass-card rounded-xl">
-                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-5')">
+                    <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-5')" aria-expanded="false" aria-controls="faq-5">
                         <span>7. Mitä välineitä tarvitsen?                        </span>
-                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-5"></i>
+                        <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-5" aria-hidden="true"></i>
                     </button>
                     <div id="faq-5" class="accordion-content">
                         <div class="px-4 sm:px-6 pb-4">
@@ -638,7 +641,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Valmennus on vastannut odotuksiani täysin! Fanni on huippu valmentaja joka kuuntelee, neuvoo ja ohjaa kärsivällisesti ja määrätietoisesti."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 2 -->
@@ -646,7 +650,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin. Löytyy ihanasti ymmärrys siihen että kehon ja mielen tasapaino on tärkeässä roolissa myös valmennuksen onnistumisen kanssa."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 3 -->
@@ -654,7 +659,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava, auttaa ja tsemppaa hyvin! Viikoittain kysyy, miten on viikko treenin kanssa mennyt ja ottanut huomioon, että elämässä on muutakin kuin treeni."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 4 -->
@@ -662,7 +668,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva, tulee tunne että valmentaja tosissaan arvioi tekniikkaa ja pyrkii auttamaan sen korjaamisessa. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 5 -->
@@ -670,7 +677,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
 
@@ -680,7 +688,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Valmennus on vastannut odotuksiani täysin! Fanni on huippu valmentaja joka kuuntelee, neuvoo ja ohjaa kärsivällisesti ja määrätietoisesti."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 2 -->
@@ -688,7 +697,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin. Löytyy ihanasti ymmärrys siihen että kehon ja mielen tasapaino on tärkeässä roolissa myös valmennuksen onnistumisen kanssa."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 3 -->
@@ -696,7 +706,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava, auttaa ja tsemppaa hyvin! Viikoittain kysyy, miten on viikko treenin kanssa mennyt ja ottanut huomioon, että elämässä on muutakin kuin treeni."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 4 -->
@@ -704,7 +715,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva, tulee tunne että valmentaja tosissaan arvioi tekniikkaa ja pyrkii auttamaan sen korjaamisessa. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- 5 -->
@@ -712,14 +724,15 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-      <!-- Contact Section -->
+    <!-- Contact Section -->
     <section id="contact" class="bg-brand-dark py-12 sm:py-24 relative overflow-hidden border-t border-gray-800">
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal">
             <h2 class="text-brand-red font-bold tracking-wider text-xs sm:text-sm mb-4">OTA YHTEYTTÄ</h2>
@@ -734,11 +747,12 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Sähköposti-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fas fa-envelope text-xl text-brand-red"></i>
+                        <i class="fas fa-envelope text-xl text-brand-red" aria-hidden="true"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Sähköposti</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4 break-all">savelastrength@gmail.com</p>
-                    <a href="mailto:savelastrength@gmail.com" class="bg-white hover:bg-gray-200 text-black px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full shadow-lg">
+                    <!-- ACCESSIBILITY FIX: Added aria-label -->
+                    <a href="mailto:savelastrength@gmail.com" aria-label="Lähetä sähköpostia osoitteeseen savelastrength@gmail.com" class="bg-white hover:bg-gray-200 text-black px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full shadow-lg">
                         Lähetä viesti
                     </a>
                 </div>
@@ -746,12 +760,13 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Instagram-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fab fa-instagram text-xl text-brand-red"></i>
+                        <i class="fab fa-instagram text-xl text-brand-red" aria-hidden="true"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Instagram</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4">@fannisavela</p>
-                    <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" class="border border-white hover:bg-white hover:text-black text-white px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full">
-                        Tutustu
+                    <!-- ACCESSIBILITY FIX: Added aria-label -->
+                    <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Seuraa Fanni Savelaa Instagramissa" class="border border-white hover:bg-white hover:text-black text-white px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full">
+                        Seuraa
                     </a>
                 </div>
             </div>
@@ -767,7 +782,12 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             </div>
             <div class="flex justify-center space-x-6 sm:space-x-8 mb-6 sm:mb-8">
                 <!-- Instagram-linkki -->
-                <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl"></i></a>
+                <!-- ACCESSIBILITY FIX: Added aria-label -->
+                <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl" aria-hidden="true"></i></a>
+                <!-- ACCESSIBILITY FIX: Added aria-label -->
+                <a href="#" aria-label="Facebook" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-facebook text-xl sm:text-2xl" aria-hidden="true"></i></a>
+                <!-- ACCESSIBILITY FIX: Added aria-label -->
+                <a href="#" aria-label="YouTube" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-youtube text-xl sm:text-2xl" aria-hidden="true"></i></a>
             </div>
             <p class="text-gray-600 text-xs sm:text-sm">© 2025 SavelaStrength Valmennus. Kaikki oikeudet pidätetään.</p>
         </div>
@@ -840,23 +860,36 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             const content = document.getElementById(id);
             const icon = document.querySelector(`[data-icon="${id}"]`);
             const isOpen = content.classList.contains('open');
+            // Accessibility: Update button state
+            const button = document.querySelector(`button[onclick="toggleAccordion('${id}')"]`);
 
             // Sulje kaikki muut
             document.querySelectorAll('.accordion-content').forEach(item => {
-                item.classList.remove('open');
-                item.style.maxHeight = '0';
+                if(item.id !== id) {
+                    item.classList.remove('open');
+                    item.style.maxHeight = '0';
+                    // Update other buttons
+                    const otherBtn = document.querySelector(`button[aria-controls="${item.id}"]`);
+                    if(otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                }
             });
             document.querySelectorAll('.fas.fa-chevron-down').forEach(item => {
-                item.style.transform = 'rotate(0deg)';
+                if(item !== icon) item.style.transform = 'rotate(0deg)';
             });
 
             if (!isOpen) {
                 content.classList.add('open');
+                if(button) button.setAttribute('aria-expanded', 'true');
                 // Aseta korkeus vasta elementin näkyvyyden jälkeen
                 setTimeout(() => {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }, 10); 
                 icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.remove('open');
+                content.style.maxHeight = '0';
+                if(button) button.setAttribute('aria-expanded', 'false');
+                icon.style.transform = 'rotate(0deg)';
             }
         }
 
