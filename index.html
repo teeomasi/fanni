@@ -45,7 +45,6 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'marquee': 'marquee 25s linear infinite',
-                        'scroll': 'scroll 40s linear infinite', /* Hieman nopeampi/sujuvampi */
                     },
                     keyframes: {
                         float: {
@@ -55,11 +54,6 @@
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-100%)' },
-                        },
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            /* PÄIVITETTY: Käyttää nyt dynaamisia CSS-muuttujia, jotta loop on saumaton mobiilissa JA desktopissa */
-                            '100%': { transform: 'translateX(calc(-1 * 5 * (var(--card-width) + var(--gap))))' }, 
                         }
                     }
                 }
@@ -157,10 +151,15 @@
             margin-top: 1rem;
         }
 
-        .testimonial-track:hover {
-            animation-play-state: paused;
+        /* Piilotetaan rullauspalkki karusellista */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        /* PÄIVITETTY: Käyttää nyt muuttujaa leveyteen */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
         .testimonial-card {
             width: var(--card-width); 
             flex-shrink: 0;
@@ -359,7 +358,7 @@
                     <div id="more-3" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
                         <p> Kahdeksan viikon kestoinen treeniohjelma yksilöllisesti sinun tavoitteiden mukaan. 8 vk. jälkeen voit ostaa uudestaan tämän 8 vk. ohjelman, jolloin teen uuden ohjelman aiemman pohjalta, huomioiden aiemman 8 vk. treenien etenemisen.</p>
                         <p>Ohjelma sisältää:<br>- Yksilöllisen treeniohjelman kerralla 8 viikoksi<br>- Tiedosto, jossa treeniohjelma ja liikkeiden ohjevideot</p>
-                        <p>Hinta 80€ sis. alv 25.5%</p>
+                        <p>Hinta 105€ sis. alv 25.5%</p>
                     </div>
                 </div>
             </div>
@@ -415,7 +414,7 @@
                                 </div>
                                 <div class="bg-gray-900 rounded p-1">
                                     <span class="block text-[0.6rem] text-gray-500 uppercase">Maastanosto</span>
-                                    <span class="block text-brand-red font-bold text-lg">206.5kg</span>
+                                    <span class="block text-brand-red font-bold text-lg">206kg</span>
                                 </div>
                             </div>
                         </div>
@@ -530,7 +529,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials Section - MANUAALINEN SELATTAVA + AUTO-SCROLL (DRAG/SWIPE ENABLED) -->
     <section id="testimonials" class="py-12 sm:py-24 bg-black relative overflow-hidden border-b border-gray-900">
         <div class="absolute top-20 left-0 w-72 h-72 bg-brand-red/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-20 right-0 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -538,46 +537,52 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             <div class="text-center reveal">
                 <h2 class="text-brand-red font-bold tracking-wider text-xs sm:text-sm mb-2">KOKEMUKSIA</h2>
                 <h3 class="text-2xl sm:text-4xl font-bold text-white">ASIAKKAIDEN TARINOITA</h3>
-                <p class="text-gray-500 mt-2 text-xs sm:text-sm">Vie hiiri kortin päälle pysäyttääksesi liikkeen.</p>
+                <p class="text-gray-500 mt-2 text-xs sm:text-sm">Selaa kokemuksia pyyhkäisemällä.</p>
             </div>
         </div>
-        <div class="w-full overflow-hidden relative">
-            <div class="testimonial-track flex gap-4 sm:gap-8 w-max animate-scroll hover:[animation-play-state:paused]">
+        
+        <!-- Karuselli Container -->
+        <div class="relative group max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Scroll Container - Overflow-x: auto mahdollistaa raahauksen/pyyhkäisyn -->
+            <!-- PÄIVITETTY: Lisätty cursor-grab ja active:cursor-grabbing -->
+            <div id="testimonial-scroll" class="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar pb-8 px-1 cursor-grab active:cursor-grabbing select-none">
                 
+                <!-- 5 Unique Cards -->
                 <!-- Card 1 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Valmennus on vastannut odotuksiani täysin! Fanni on huippu valmentaja joka kuuntelee, neuvoo ja ohjaa kärsivällisesti ja määrätietoisesti."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">AJ</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Antti Jokinen</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 2 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin. Löytyy ihanasti ymmärrys siihen että kehon ja mielen tasapaino on tärkeässä roolissa myös valmennuksen onnistumisen kanssa."</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">VS</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Veera Salmi</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 3 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava, auttaa ja tsemppaa hyvin! Viikoittain kysyy, miten on viikko treenin kanssa mennyt ja ottanut huomioon, että elämässä on muutakin kuin treeni."</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TT</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Tuomas T.</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 4 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva, tulee tunne että valmentaja tosissaan arvioi tekniikkaa ja pyrkii auttamaan sen korjaamisessa. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">ML</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Maija Laitinen</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 5 -->
@@ -585,46 +590,46 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TM</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Timo M.</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
 
                 <!-- Duplicate Cards for Loop -->
-                <!-- Card 1 -->
-                <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
+                 <!-- Card 1 -->
+                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Valmennus on vastannut odotuksiani täysin! Fanni on huippu valmentaja joka kuuntelee, neuvoo ja ohjaa kärsivällisesti ja määrätietoisesti."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">AJ</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Antti Jokinen</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 2 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin. Löytyy ihanasti ymmärrys siihen että kehon ja mielen tasapaino on tärkeässä roolissa myös valmennuksen onnistumisen kanssa."</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">VS</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Veera Salmi</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 3 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava, auttaa ja tsemppaa hyvin! Viikoittain kysyy, miten on viikko treenin kanssa mennyt ja ottanut huomioon, että elämässä on muutakin kuin treeni."</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TT</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Tuomas T.</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 4 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva, tulee tunne että valmentaja tosissaan arvioi tekniikkaa ja pyrkii auttamaan sen korjaamisessa. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">ML</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Maija Laitinen</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
                 <!-- Card 5 -->
@@ -632,11 +637,12 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TM</div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Timo M.</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">A</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -655,10 +661,11 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Sähköposti-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fas fa-envelope text-xl text-brand-red"></i>
+                        <i class="fas fa-envelope text-xl text-brand-red" aria-hidden="true"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Sähköposti</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4 break-all">savelastrength@gmail.com</p>
+                    <!-- ACCESSIBILITY FIX: Added aria-label -->
                     <a href="mailto:savelastrength@gmail.com" aria-label="Lähetä sähköpostia osoitteeseen savelastrength@gmail.com" class="bg-white hover:bg-gray-200 text-black px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full shadow-lg">
                         Lähetä viesti
                     </a>
@@ -667,10 +674,11 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Instagram-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fab fa-instagram text-xl text-brand-red"></i>
+                        <i class="fab fa-instagram text-xl text-brand-red" aria-hidden="true"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Instagram</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4">@fannisavela</p>
+                    <!-- ACCESSIBILITY FIX: Added aria-label -->
                     <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Seuraa Fanni Savelaa Instagramissa" class="border border-white hover:bg-white hover:text-black text-white px-5 py-2.5 rounded font-bold uppercase text-xs tracking-wide transition w-full">
                         Seuraa
                     </a>
@@ -688,7 +696,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             </div>
             <div class="flex justify-center space-x-6 sm:space-x-8 mb-6 sm:mb-8">
                 <!-- Instagram-linkki -->
-                <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl"></i></a>
+                <!-- ACCESSIBILITY FIX: Added aria-label -->
+                <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl" aria-hidden="true"></i></a>
             </div>
             <p class="text-gray-600 text-xs sm:text-sm">© 2025 SavelaStrength Valmennus. Kaikki oikeudet pidätetään.</p>
         </div>
@@ -789,6 +798,81 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 icon.style.transform = 'rotate(0deg)';
             }
         }
+
+        // --- JavaScript-pohjainen automaattirullaus ja "Click & Drag" ---
+        const scrollContainer = document.getElementById('testimonial-scroll');
+        let scrollSpeed = 0.5; // Automaattinopeus
+        let isPaused = false;
+        let autoScrollId;
+
+        // Muuttujat raahausta varten
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        function startAutoScroll() {
+            function step() {
+                // Rullataan automaattisesti vain jos ei raahata (isDown) eikä olla pausella
+                if (!isPaused && !isDown && scrollContainer) {
+                    scrollContainer.scrollLeft += scrollSpeed;
+                    
+                    // Ikuinen luuppi logiikka (hypätään alkuun kun puolet rullattu)
+                    if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth / 2)) {
+                        // Varmistetaan sulava hyppy vähentämällä tarkka puolikas
+                         scrollContainer.scrollLeft -= (scrollContainer.scrollWidth / 2);
+                    }
+                }
+                autoScrollId = requestAnimationFrame(step);
+            }
+            step();
+        }
+
+        if (scrollContainer) {
+            // --- HIIREN RAAHAUS LOGIIKKA (DESKTOP) ---
+            
+            scrollContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isPaused = true; // Pysäytä automaatio
+                scrollContainer.classList.add('cursor-grabbing');
+                scrollContainer.classList.remove('cursor-grab');
+                // Tallennetaan alkupiste
+                startX = e.pageX - scrollContainer.offsetLeft;
+                scrollLeft = scrollContainer.scrollLeft;
+            });
+
+            scrollContainer.addEventListener('mouseleave', () => {
+                isDown = false;
+                isPaused = false; // Jatka automaatiota
+                scrollContainer.classList.remove('cursor-grabbing');
+                scrollContainer.classList.add('cursor-grab');
+            });
+
+            scrollContainer.addEventListener('mouseup', () => {
+                isDown = false;
+                isPaused = false; // Jatka automaatiota
+                scrollContainer.classList.remove('cursor-grabbing');
+                scrollContainer.classList.add('cursor-grab');
+            });
+
+            scrollContainer.addEventListener('mousemove', (e) => {
+                if (!isDown) return; // Jos hiiri ei ole pohjassa, älä tee mitään
+                e.preventDefault();
+                const x = e.pageX - scrollContainer.offsetLeft;
+                const walk = (x - startX) * 2; // *2 tekee rullauksesta vähän nopeampaa/herkempää
+                scrollContainer.scrollLeft = scrollLeft - walk;
+            });
+
+            // --- KOSKETUSNÄYTTÖ LOGIIKKA (MOBIILI) ---
+            // Mobiili hoitaa rullauksen natiivisti overflow-x: auto -tyylillä,
+            // mutta meidän pitää pysäyttää automaattirullaus sormen ollessa ruudulla.
+            
+            scrollContainer.addEventListener('touchstart', () => { isPaused = true; isDown = true; });
+            scrollContainer.addEventListener('touchend', () => { isPaused = false; isDown = false; });
+        }
+
+        // Käynnistä heti
+        startAutoScroll();
+
 
         // --- Scroll Animation Observer ---
         document.addEventListener('DOMContentLoaded', () => {
