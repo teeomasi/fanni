@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO: Meta-kuvaus -->
+    <!-- SEO: Meta-kuvaus hakukoneille -->
     <meta name="description" content="SavelaStrength - Fanni Savelan yksilöllistä voimanostovalmennusta ja fysiikkaharjoittelua. Saavuta tavoitteesi ammattilaisen tuella.">
-    <link rel="canonical" href="https://www.fannisavela.fi/">
-
+    <!-- SEO: Canonical linkki -->
+    <link rel="canonical" href="https://www.savelastrength.fi/">
     <title>SavelaStrength - Voimanostovalmennus</title>
     
-    <!-- PERFORMANCE: Esilataa yhteydet ulkoisiin lähteisiin -->
+    <!-- PERFORMANCE: Esilataa yhteydet -->
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -17,7 +17,7 @@
     <!-- TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (OPTIMOITU: display=swap) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -32,10 +32,10 @@
                 extend: {
                     colors: {
                         brand: {
-                            red: '#888888', // Keskiharmaa korostus
-                            dark: '#0D1117', // Tumma tausta
-                            gray: '#1F2937', // Kortin pohja
-                            light: '#F9FAFB', // Kirkas teksti
+                            red: '#888888',
+                            dark: '#0D1117',
+                            gray: '#1F2937',
+                            light: '#F9FAFB',
                         }
                     },
                     fontFamily: {
@@ -45,7 +45,7 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'marquee': 'marquee 25s linear infinite',
-                        'scroll': 'scroll 60s linear infinite',
+                        'scroll': 'scroll 40s linear infinite', /* Hieman nopeampi/sujuvampi */
                     },
                     keyframes: {
                         float: {
@@ -58,7 +58,8 @@
                         },
                         scroll: {
                             '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(calc(-350px * 5 - 2rem * 5))' }, 
+                            /* PÄIVITETTY: Käyttää nyt dynaamisia CSS-muuttujia, jotta loop on saumaton mobiilissa JA desktopissa */
+                            '100%': { transform: 'translateX(calc(-1 * 5 * (var(--card-width) + var(--gap))))' }, 
                         }
                     }
                 }
@@ -67,6 +68,18 @@
     </script>
 
     <style>
+        /* CSS-muuttujat karusellin laskentaan */
+        :root {
+            --card-width: 300px; /* Mobiili leveys */
+            --gap: 1rem;         /* Mobiili väli (gap-4) */
+        }
+        @media (min-width: 640px) {
+            :root {
+                --card-width: 350px; /* Desktop leveys */
+                --gap: 2rem;         /* Desktop väli (gap-8) */
+            }
+        }
+
         /* Custom CSS */
         body {
             font-family: 'Inter', sans-serif;
@@ -147,8 +160,9 @@
         .testimonial-track:hover {
             animation-play-state: paused;
         }
+        /* PÄIVITETTY: Käyttää nyt muuttujaa leveyteen */
         .testimonial-card {
-            width: 350px; 
+            width: var(--card-width); 
             flex-shrink: 0;
         }
 
@@ -248,36 +262,26 @@
 
     <!-- Hero Section -->
     <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden">
-        
-        <!-- Video Container -->
         <div class="video-container">
             <video autoplay loop muted playsinline poster="mave1.jpg">
-                <!-- TÄRKEÄÄ: WebM ensin (pienempi tiedosto = nopeampi lataus) -->
                 <source src="mave_tausta.webm" type="video/webm">
                 <source src="mave_tausta.mp4" type="video/mp4">
             </video>
         </div>
-
-        <!-- Dark Overlay -->
         <div class="absolute inset-0 bg-black/50 z-10"></div>
-        
         <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl animate-pulse z-20"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse z-20" style="animation-delay: 1s;"></div>
 
         <div class="relative z-30 text-center px-4 max-w-5xl mx-auto pt-20 sm:pt-24 pb-4 sm:pb-8">
-            
             <h2 class="text-white font-bold tracking-widest sm:tracking-[0.3em] mb-2 sm:mb-4 text-[0.65rem] sm:text-sm md:text-base animate-[fadeInDown_1s_ease-out]">
                 VOIMANOSTAJA JA VALMENTAJA FANNI SAVELA
             </h2>
-            
             <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl animate-[fadeInUp_1s_ease-out_0.3s_both]">
                SAVELASTRENGTH  <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-white">SAVELASTRENGTH</span><br /> SAVELASTRENGTH
             </h1>
-            
             <p class="text-sm sm:text-lg mb-5 sm:mb-8 max-w-2xl mx-auto animate-[fadeInUp_1s_ease-out_0.6s_both] font-light leading-relaxed">
                 Yksilöllistä valmennusta kohti vahvempaa ja toimivampaa kehoa, tavoitteesi mukaisesti.
             </p>
-            
             <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 animate-[fadeInUp_1s_ease-out_0.9s_both]">
                 <a href="#contact" class="group relative bg-white hover:bg-gray-200 text-black text-sm sm:text-base px-5 py-2.5 sm:px-6 sm:py-3 rounded font-bold uppercase tracking-wide overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                     <span class="relative z-10 group-hover:scale-110 inline-block transition-transform duration-300">Aloita Valmennus</span>
@@ -288,7 +292,6 @@
                 </a>
             </div>
         </div>
-
         <div class="absolute bottom-5 w-full flex justify-center z-30 animate-bounce">
             <i class="fas fa-chevron-down text-xl text-white/50" aria-hidden="true"></i>
         </div>
@@ -304,31 +307,25 @@
                 • Voimanosto • Kehonrakennus • Suorituskyky • Tekniikka • Ohjelmointi • Ravinto • Voimanosto • Kehonrakennus • Suorituskyky • Tekniikka • Ohjelmointi • Ravinto
             </div>
         </div>
-    </div
-    >
+    </div>
 
     <!-- Services Section -->
     <section id="services" class="py-12 sm:py-24 bg-brand-dark relative">
         <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-gray/20 to-transparent pointer-events-none"></div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-10 sm:mb-20 reveal">
                 <h2 class="text-brand-red font-bold tracking-[0.2em] text-xs sm:text-sm mb-2">PALVELUT</h2>
                 <h3 class="text-2xl sm:text-4xl md:text-5xl font-bold text-white uppercase">Mitä tarjoan?</h3> 
                 <div class="w-20 h-1 bg-brand-red mx-auto mt-4 rounded-full"></div>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start">
-                
-                <!-- Service 1: Etävalmennus -->
+                <!-- Service 1 -->
                 <div class="service-card glass-card p-6 sm:p-8 rounded-xl relative group reveal reveal-delay-100 flex flex-col">
                     <h4 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Etävalmennus</h4>
                     <p class="text-sm text-gray-400 mb-4 sm:mb-6 flex-grow leading-relaxed">
                         Yksilöllinen treenien ohjelmointi, sisältäen valmentajan tuen ja seurannan.
                     </p>
-                    
                     <button onclick="toggleReadMore('more-1', this)" class="inline-block text-center w-full border border-gray-700 hover:border-brand-red text-white py-2 rounded font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-brand-red transition duration-300">Lue Lisää</button>
-                    
                     <div id="more-1" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
                         <p>Yksilöllinen treenien ohjelmointi sinun tavoitteiden mukaan. Step2fit sovellus treenien kirjaamista ja seurantaa varten, jossa myös liikkeiden ohjevideot. Tekniikoiden analysointi ja ohjeistus etänä, sekä erilliset tekniikkavideot tarvittaessa. </p>
                         <p>Valmentajan jatkuva tuki whatsappin välityksellä.</p>
@@ -336,19 +333,15 @@
                         <p>Hinta 130€/kk. sis. alv 25.5%</p>
                     </div>
                 </div>
-
-                <!-- Service 2: Etävalmennus ruokavaliolla -->
+                <!-- Service 2 -->
                 <div class="service-card glass-card p-6 sm:p-8 rounded-xl border-2 border-brand-red relative transform md:-translate-y-6 shadow-[0_0_30px_rgba(136,136,136,0.15)] reveal reveal-delay-200 flex flex-col z-20">
-                    
                     <div class="mt-4 sm:mt-6 mb-3 sm:mb-4">
                         <h4 class="text-xl sm:text-3xl font-bold text-white">Etävalmennus ruokavaliolla</h4>
                     </div>
                     <p class="text-sm text-gray-300 mb-4 sm:mb-6 flex-grow leading-relaxed">
                         Yksilöllinen treenien ohjelmointi + ruokavalio, sisältäen valmentajan tuen ja seurannan.
                     </p>
-                    
                     <button onclick="toggleReadMore('more-2', this)" class="w-full bg-white hover:bg-gray-200 text-black py-3 rounded font-bold uppercase text-sm tracking-wide transition shadow-lg hover:shadow-white/40">Lue Lisää</button>
-                    
                     <div id="more-2" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
                         <p>Yksilöllinen treenien ohjelmointi sekä ruokavalio sinun tavoitteiden mukaan. Step2fit sovellus treenien kirjaamista ja seurantaa varten, missä myös liikkeiden ohjevideot. Tekniikoiden analysointi ja ohjeistus etänä, sekä erilliset tekniikkavideot tarvittaessa.</p>
                         <p>Valmentajan jatkuva tuki whatsappin välityksellä.</p>
@@ -356,20 +349,17 @@
                         <p>Hinta 150€ / kk. sis. alv 25.5%</p>
                     </div>
                 </div>
-
-                <!-- Service 3: Treeniohjelma -->
+                <!-- Service 3 -->
                 <div class="service-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 relative group reveal reveal-delay-300 flex flex-col">
                     <h4 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Treeniohjelma</h4>
                     <p class="text-gray-400 text-sm mb-4 sm:mb-6 flex-grow leading-relaxed">
                         Kertaluontoinen, sinulle räätälöity ohjelma ilman jatkuvaa tukea ja seurantaa.
                     </p>
-                    
                     <button onclick="toggleReadMore('more-3', this)" class="inline-block text-center w-full border border-gray-700 hover:border-brand-red text-white py-2 rounded font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-brand-red transition duration-300">Lue Lisää</button>
-                    
                     <div id="more-3" class="expand-content text-gray-300 text-xs leading-relaxed space-y-2">
-                        <p>Kahdeksan viikon kestoinen treeniohjelma yksilöllisesti sinun tavoitteiden mukaan. 8 vk. jälkeen voit ostaa uudestaan tämän 8 vk. ohjelman, jolloin teen uuden ohjelman aiemman pohjalta, huomioiden aiemman 8 vk. treenien etenemisen.</p>
+                        <p> Kahdeksan viikon kestoinen treeniohjelma yksilöllisesti sinun tavoitteiden mukaan. 8 vk. jälkeen voit ostaa uudestaan tämän 8 vk. ohjelman, jolloin teen uuden ohjelman aiemman pohjalta, huomioiden aiemman 8 vk. treenien etenemisen.</p>
                         <p>Ohjelma sisältää:<br>- Yksilöllisen treeniohjelman kerralla 8 viikoksi<br>- Tiedosto, jossa treeniohjelma ja liikkeiden ohjevideot</p>
-                        <p>Hinta 105€ sis. alv 25.5%</p>
+                        <p>Hinta 80€ sis. alv 25.5%</p>
                     </div>
                 </div>
             </div>
@@ -380,34 +370,20 @@
     <section id="about" class="py-12 sm:py-24 bg-brand-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
-                <!-- Image Column -->
                 <div class="relative reveal">
                     <div class="absolute -top-3 -left-3 w-full h-full glass-card rounded-xl z-0 hidden md:block"></div>
                     <div class="absolute -bottom-3 -right-3 w-full h-full bg-brand-dark rounded-xl z-0 hidden md:block"></div>
-                    
                     <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl h-[350px] sm:h-[500px] w-full group">
-                        <!-- TÄRKEÄ OPTIMOINTI: Width ja Height lisätty CLS-virheen estämiseksi -->
-                        <img src="kyykky.jpg" 
-                             alt="Fanni Savela Kyykky" 
-                             width="800" height="500"
-                             onerror="this.onerror=null;this.src='https://placehold.co/800x500/888888/0D1117?text=FANNI+SAVELA';" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="kyykky.jpg" alt="Fanni Savela Kyykky" width="800" height="500" onerror="this.onerror=null;this.src='https://placehold.co/800x500/888888/0D1117?text=FANNI+SAVELA';" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     </div>
                 </div>
-
-                <!-- Text Content Column -->
                 <div class="reveal reveal-delay-200">
                     <h2 class="text-brand-red font-bold tracking-wider text-xs sm:text-sm mb-2">TIETOA MINUSTA</h2>
                     <h3 class="text-2xl sm:text-4xl font-bold text-white mb-4 sm:mb-6 uppercase">FANNI SAVELA<br>Voimanostaja ja valmentaja</h3>
-                    
                     <p class="text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
-                        Olen Fanni Savela, fysioterapeutti-opiskelija, koulutettu personal trainer ja kansainvälisen tason voimanostaja. Nämä osa-alueet yhdessä mahdollistavat monipuolisen valmennuksen, jossa otetaan huomioon sekä suorituskyvyn kehittäminen, että kehon hyvinvointi pitkällä aikavälillä. 
-
-<br><br> Uskon vahvasti, että jokainen voi saavuttaa tavoitteensa oikeanlaisella, henkilökohtaisella suunnitelmalla. 
+                        Olen Fanni Savela, fysioterapeutti-opiskelija, koulutettu personal trainer ja kansainvälisen tason voimanostaja. Nämä osa-alueet yhdessä mahdollistavat monipuolisen valmennuksen, jossa otetaan huomioon sekä suorituskyvyn kehittäminen, että kehon hyvinvointi pitkällä aikavälillä. <br><br> Uskon vahvasti, että jokainen voi saavuttaa tavoitteensa oikeanlaisella, henkilökohtaisella suunnitelmalla.
                     </p>
-
-                    <!-- Stats Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="glass-card p-4 sm:p-6 rounded-lg border border-gray-800 hover:border-brand-red transition duration-300">
                             <div class="flex items-center mb-2">
@@ -416,7 +392,6 @@
                             </div>
                             <p class="text-gray-400 text-xs"> yli kymmenen vuoden treenitausta ja viiden vuoden kilpaura.</p>
                         </div>
-
                         <div class="glass-card p-4 sm:p-6 rounded-lg border border-gray-800 hover:border-brand-red transition duration-300">
                             <div class="flex items-center mb-2">
                                 <i class="fas fa-trophy text-brand-red text-xl mr-2"></i>
@@ -424,7 +399,6 @@
                             </div>
                             <p class="text-gray-400 text-xs">Penkkipunnerruksen Maailmanmestari ja seitsenkertainen Suomen mestari. Suomen kaikkien aikojen paras IPF-pisteytys klassisessa voimanostossa. </p>
                         </div>
-
                         <div class="glass-card p-4 sm:p-6 rounded-lg border border-gray-800 hover:border-brand-red transition duration-300 sm:col-span-2">
                             <div class="flex items-center mb-3">
                                 <i class="fas fa-dumbbell text-brand-red text-base mr-2"></i>
@@ -441,7 +415,7 @@
                                 </div>
                                 <div class="bg-gray-900 rounded p-1">
                                     <span class="block text-[0.6rem] text-gray-500 uppercase">Maastanosto</span>
-                                    <span class="block text-brand-red font-bold text-lg">206kg</span>
+                                    <span class="block text-brand-red font-bold text-lg">206.5kg</span>
                                 </div>
                             </div>
                         </div>
@@ -459,11 +433,10 @@
                 <h3 class="text-2xl sm:text-4xl font-bold text-white uppercase">Usein kysytyt kysymykset (UKK)</h3>
                 <div class="w-20 h-1 bg-brand-red mx-auto mt-4 rounded-full"></div>
             </div>
-
             <div class="space-y-4">
                 <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-1')" aria-expanded="false" aria-controls="faq-1">
-                        <span>Kenelle valmennus sopii?</span>
+                        <span>1. Kenelle valmennus sopii?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-1" aria-hidden="true"></i>
                     </button>
                     <div id="faq-1" class="accordion-content">
@@ -474,10 +447,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-2')" aria-expanded="false" aria-controls="faq-2">
-                        <span>Täytyykö minun kilpailla?</span>
+                        <span>2. Täytyykö minun kilpailla?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-2" aria-hidden="true"></i>
                     </button>
                     <div id="faq-2" class="accordion-content">
@@ -488,10 +460,9 @@
                         </div>
                     </div>
                 </div>
-
                  <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-7')" aria-expanded="false" aria-controls="faq-7">
-                        <span>Koostuuko treenit ainoastaan voimanostoliikkeistä?</span>
+                        <span>3. Koostuuko treenit ainoastaan voimanostoliikkeistä?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-7" aria-hidden="true"></i>
                     </button>
                     <div id="faq-7" class="accordion-content">
@@ -502,10 +473,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-3')" aria-expanded="false" aria-controls="faq-3">
-                        <span>Miten yhteydenpito toimii etävalmennuksessa?</span>
+                        <span>4. Miten yhteydenpito toimii etävalmennuksessa?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-3" aria-hidden="true"></i>
                     </button>
                     <div id="faq-3" class="accordion-content">
@@ -516,10 +486,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-4')" aria-expanded="false" aria-controls="faq-4">
-                        <span>Onko valmennuksessa määräaikaa?</span>
+                        <span>5. Onko valmennuksessa määräaikaa?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-4" aria-hidden="true"></i>
                     </button>
                     <div id="faq-4" class="accordion-content">
@@ -531,10 +500,9 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                         </div>
                     </div>
                 </div>
-
                 <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-6')" aria-expanded="false" aria-controls="faq-6">
-                        <span>Voinko muuttaa pakettia myöhemmin?</span>
+                        <span>6. Voinko muuttaa pakettia myöhemmin?</span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-6" aria-hidden="true"></i>
                     </button>
                     <div id="faq-6" class="accordion-content">
@@ -545,10 +513,9 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                         </div>
                     </div>
                 </div>
-
                 <div class="glass-card rounded-xl">
                     <button class="w-full text-left p-4 sm:p-6 flex justify-between items-center text-white font-bold text-sm sm:text-lg hover:bg-white/5 transition duration-200" onclick="toggleAccordion('faq-5')" aria-expanded="false" aria-controls="faq-5">
-                        <span>Mitä välineitä tarvitsen?                        </span>
+                        <span>7. Mitä välineitä tarvitsen?                        </span>
                         <i class="fas fa-chevron-down text-brand-red transition-transform duration-300" data-icon="faq-5" aria-hidden="true"></i>
                     </button>
                     <div id="faq-5" class="accordion-content">
@@ -567,7 +534,6 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
     <section id="testimonials" class="py-12 sm:py-24 bg-black relative overflow-hidden border-b border-gray-900">
         <div class="absolute top-20 left-0 w-72 h-72 bg-brand-red/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-20 right-0 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8 sm:mb-12">
             <div class="text-center reveal">
                 <h2 class="text-brand-red font-bold tracking-wider text-xs sm:text-sm mb-2">KOKEMUKSIA</h2>
@@ -575,7 +541,6 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <p class="text-gray-500 mt-2 text-xs sm:text-sm">Vie hiiri kortin päälle pysäyttääksesi liikkeen.</p>
             </div>
         </div>
-
         <div class="w-full overflow-hidden relative">
             <div class="testimonial-track flex gap-4 sm:gap-8 w-max animate-scroll hover:[animation-play-state:paused]">
                 
@@ -584,8 +549,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Valmennus on vastannut odotuksiani täysin! Fanni on huippu valmentaja joka kuuntelee, neuvoo ja ohjaa kärsivällisesti ja määrätietoisesti."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">AJ</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Antti Jokinen</div></div>
                     </div>
                 </div>
                 <!-- Card 2 -->
@@ -593,8 +558,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin. Löytyy ihanasti ymmärrys siihen että kehon ja mielen tasapaino on tärkeässä roolissa myös valmennuksen onnistumisen kanssa."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">VS</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Veera Salmi</div></div>
                     </div>
                 </div>
                 <!-- Card 3 -->
@@ -602,8 +567,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava, auttaa ja tsemppaa hyvin! Viikoittain kysyy, miten on viikko treenin kanssa mennyt ja ottanut huomioon, että elämässä on muutakin kuin treeni."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TT</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Tuomas T.</div></div>
                     </div>
                 </div>
                 <!-- Card 4 -->
@@ -611,17 +576,17 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva, tulee tunne että valmentaja tosissaan arvioi tekniikkaa ja pyrkii auttamaan sen korjaamisessa. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">ML</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Maija Laitinen</div></div>
                     </div>
                 </div>
                 <!-- Card 5 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-60om transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Tää on kyllä ollut vuoden 2025 yks parhaista asioista, kiitos sulle"</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TM</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Timo M.</div></div>
                     </div>
                 </div>
 
@@ -631,8 +596,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Valmennus on vastannut odotuksiani täysin! Fanni on huippu valmentaja joka kuuntelee, neuvoo ja ohjaa kärsivällisesti ja määrätietoisesti."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">AJ</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Antti Jokinen</div></div>
                     </div>
                 </div>
                 <!-- Card 2 -->
@@ -640,8 +605,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Aina saanut jeesiä kun on tarvinnut ja kuulumisia kyselty säännöllisesti. Tuntuu että aidosti kiinnostaa miten menee ja myös tsempit tullut hankalina aikoina valmennuksen ulkopuolisiinkin juttuihin. Löytyy ihanasti ymmärrys siihen että kehon ja mielen tasapaino on tärkeässä roolissa myös valmennuksen onnistumisen kanssa."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">VS</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Veera Salmi</div></div>
                     </div>
                 </div>
                 <!-- Card 3 -->
@@ -649,8 +614,8 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Fanni on ollut hyvin ammattitaitoinen ja perillä yksilöllisesti tilanteestani. Fanni on löytänyt ongelmakohdat hyvin etänä ja tämä auttanut tavoitteissa. Fanni on lämmin ja kannustava, auttaa ja tsemppaa hyvin! Viikoittain kysyy, miten on viikko treenin kanssa mennyt ja ottanut huomioon, että elämässä on muutakin kuin treeni."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TT</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Tuomas T.</div></div>
                     </div>
                 </div>
                 <!-- Card 4 -->
@@ -658,17 +623,17 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Jokaiseen videoon tulee kattavaa kommenttia, mikä on tosi kiva, tulee tunne että valmentaja tosissaan arvioi tekniikkaa ja pyrkii auttamaan sen korjaamisessa. Valmentaja on myös tosi kannustava ja viesteissä on lämmin sävy!"</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">ML</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Maija Laitinen</div></div>
                     </div>
                 </div>
                 <!-- Card 5 -->
                 <div class="testimonial-card glass-card p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-60om transition">
                     <div class="text-yellow-400 text-xs mb-6 flex space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Tää on kyllä ollut vuoden 2025 yks parhaista asioista, kiitos sulle"</p>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed text-sm">"Ruokavalio ei tunnu dieetiltä, mutta rasva palaa ja voimatasot nousevat. Uskomatonta."</p>
                     <div class="flex items-center pt-3 border-t border-gray-800">
-                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-xs"></i></div>
-                        <div class="ml-3"><div class="font-bold text-xs text-white">Asiakas</div></div>
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center font-bold text-xs text-white">TM</div>
+                        <div class="ml-3"><div class="font-bold text-xs text-white">Timo M.</div></div>
                     </div>
                 </div>
             </div>
@@ -683,7 +648,6 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             
             <p class="text-sm sm:text-lg mb-8 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
                 Jos olet kiinnostunut valmennuksesta tai sinulla on kysyttävää, lähetä sähköpostia. Vastaan sinulle henkilökohtaisesti.
-            <br> <br>Viestin lähettäminen ei sido sinua mihinkään.
             </p>
 
             <!-- KORTTI-LAYOUT (PIENENNETTY) -->
@@ -691,7 +655,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Sähköposti-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fas fa-envelope text-xl text-brand-red" aria-hidden="true"></i>
+                        <i class="fas fa-envelope text-xl text-brand-red"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Sähköposti</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4 break-all">savelastrength@gmail.com</p>
@@ -703,7 +667,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                 <!-- Instagram-kortti -->
                 <div class="glass-card p-5 sm:p-6 rounded-xl border border-gray-700 flex flex-col items-center text-center hover:border-brand-red transition duration-300">
                     <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center mb-3 shadow-inner border border-gray-800">
-                        <i class="fab fa-instagram text-xl text-brand-red" aria-hidden="true"></i>
+                        <i class="fab fa-instagram text-xl text-brand-red"></i>
                     </div>
                     <h4 class="text-white font-bold text-lg mb-1">Instagram</h4>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4">@fannisavela</p>
@@ -724,7 +688,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             </div>
             <div class="flex justify-center space-x-6 sm:space-x-8 mb-6 sm:mb-8">
                 <!-- Instagram-linkki -->
-                <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/fannisavela/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-red transition transform hover:scale-110"><i class="fab fa-instagram text-xl sm:text-2xl"></i></a>
             </div>
             <p class="text-gray-600 text-xs sm:text-sm">© 2025 SavelaStrength Valmennus. Kaikki oikeudet pidätetään.</p>
         </div>
