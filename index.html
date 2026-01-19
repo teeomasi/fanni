@@ -9,116 +9,48 @@
 
     <title>SavelaStrength - Voimanostovalmennus</title>
 
-    <!-- PERFORMANCE: Esilataa yhteydet ulkoisiin lähteisiin -->
+    <!-- PERFORMANCE: LCP-kuvan esilataus (TÄRKEÄ NOPEUDELLE) -->
+    <link rel="preload" as="image" href="mave1.jpg">
+
+    <!-- PERFORMANCE: Esilataa yhteydet -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-    <!-- Google Fonts (OPTIMOITU: display=swap) -->
+    <!-- Google Fonts (OPTIMOITU: Ei blokkaa renderöintiä) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- favicon) -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    </noscript>
 
+    <!-- Font Awesome Icons (OPTIMOITU: Ei blokkaa renderöintiä) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+    
+    <!-- favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 
-    <!-- gdpr hässäkkä) -->
-    <link rel="stylesheet" id="silktide-consent-manager-css" href="silktide-consent-manager.css">
-    <script src="silktide-consent-manager.js"></script>
+    <!-- Google analytics (Siirretty myöhemmäksi ei-kriittisenä tai pidetty tässä jos halutaan varmistaa data heti) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-62MJKY4E6N"></script>
     <script>
-    silktideCookieBannerManager.updateCookieBannerConfig({
-      background: {
-        showBackground: true
-      },
-      cookieIcon: {
-        position: "bottomRight"
-      },
-      cookieTypes: [
-        {
-          id: "necessary",
-          name: "Välttämättömät",
-          description: "<p>Nämä evästeet ovat pakollisia sivuston toiminnalle, eikä niitä voi poistaa käytöstä.</p>",
-          required: true,
-          onAccept: function() {
-            console.log('Välttämättömät hyväksytty');
-          }
-        },
-        {
-          id: "analytics",
-          name: "Analytiikka",
-          description: "<p>Auttaa meitä ymmärtämään kävijämääriä.</p>",
-          defaultValue: true,
-          onAccept: function() {
-            gtag('consent', 'update', { 'analytics_storage': 'granted' });
-            dataLayer.push({ 'event': 'consent_accepted_analytics' });
-          },
-          onReject: function() {
-            gtag('consent', 'update', { 'analytics_storage': 'denied' });
-          }
-        },
-        {
-          id: "advertising",
-          name: "Markkinointi",
-          description: "<p>Mainonnan kohdentamiseen liittyvät evästeet.</p>",
-          onAccept: function() {
-            gtag('consent', 'update', {
-              ad_storage: 'granted',
-              ad_user_data: 'granted',
-              ad_personalization: 'granted'
-            });
-            dataLayer.push({ 'event': 'consent_accepted_advertising' });
-          },
-          onReject: function() {
-            gtag('consent', 'update', {
-              ad_storage: 'denied',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied'
-            });
-          }
-        }
-      ],
-      text: {
-        banner: {
-          description: "<p>Käytämme sivustolla evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme liikennettä.</p>",
-          acceptAllButtonText: "Hyväksy kaikki",
-          acceptAllButtonAccessibleLabel: "Hyväksy kaikki evästeet",
-          rejectNonEssentialButtonText: "Vain välttämättömät",
-          rejectNonEssentialButtonAccessibleLabel: "Hylkää ei-pakolliset evästeet",
-          preferencesButtonText: "Asetukset",
-          preferencesButtonAccessibleLabel: "Muokkaa asetuksia"
-        },
-        preferences: {
-          title: "Muokkaa evästeasetuksia",
-          description: "<p>Voit valita, mitä evästeitä sallit.</p>",
-          creditLinkText: "Hanki tämä banneri ilmaiseksi",
-          creditLinkAccessibleLabel: "Hanki tämä banneri ilmaiseksi"
-        }
-      }
-    });
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-62MJKY4E6N');
     </script>
 
-        <!-- Google analytics) -->
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-62MJKY4E6N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-62MJKY4E6N');
-</script>
-
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* CSS Variables from Tailwind Config */
+        /* CSS Variables */
         :root {
             --brand-red: #888888;
             --brand-dark: #0D1117;
             --brand-gray: #1F2937;
             --brand-light: #F9FAFB;
+            --text-muted: #d1d5db; /* Vaalennettu paremman kontrastin vuoksi */
             --font-heading: 'Oswald', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -162,22 +94,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
+
         /* Base Styles */
         * {
             box-sizing: border-box;
@@ -190,7 +115,7 @@
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Fallback fontti latauksen ajaksi */
             background-color: var(--brand-dark);
             color: var(--brand-light);
             overflow-x: hidden;
@@ -198,6 +123,11 @@
             -moz-osx-font-smoothing: grayscale;
             margin: 0;
             padding: 0;
+        }
+        
+        /* Kun fontit on ladattu, vaihdetaan oikeaan */
+        body.fonts-loaded {
+            font-family: var(--font-body);
         }
 
         body::selection {
@@ -1539,7 +1469,7 @@
         }
 
         .testimonials-subtitle {
-            color: #6b7280;
+            color: #9ca3af; /* Vaalennettu hieman */
             margin-top: 0.25rem; /* PIENENNETTY MARGIN (oli 0.5rem) */
             font-size: 0.75rem;
         }
@@ -1603,7 +1533,7 @@
         }
 
         .testimonial-text {
-            color: #d1d5db;
+            color: var(--text-muted); /* Kontrastikorjaus */
             font-style: italic;
             margin-bottom: 2rem;
             line-height: 1.75;
@@ -1784,7 +1714,7 @@
         }
 
         .contact-card-text {
-            color: #9ca3af;
+            color: var(--text-muted); /* Kontrastikorjaus */
             font-size: 0.75rem;
             margin-bottom: 1rem;
             word-break: break-all;
@@ -1887,7 +1817,7 @@
         }
 
         .footer-social-link {
-            color: #6b7280;
+            color: #9ca3af; /* Vaalennettu hieman */
             transition: all 0.3s;
         }
 
@@ -1907,7 +1837,7 @@
         }
 
         .footer-text {
-            color: #4b5563;
+            color: #6b7280;
             font-size: 0.75rem;
         }
 
@@ -1918,7 +1848,7 @@
         }
 
         .footer-link {
-            color: #4b5563;
+            color: #6b7280;
             font-size: 0.75rem;
             margin-top: 0.5rem;
             transition: color 0.3s;
@@ -2062,7 +1992,8 @@
 
         <!-- Video Container -->
         <div class="video-container">
-            <video autoplay loop muted playsinline poster="mave1.jpg">
+            <!-- Korjattu Accessibility: aria-hidden="true", koska koriste -->
+            <video autoplay loop muted playsinline poster="mave1.jpg" aria-hidden="true" tabindex="-1">
                 <!-- TÄRKEÄÄ: WebM ensin (pienempi tiedosto = nopeampi lataus) -->
                 <source src="mave_tausta.webm" type="video/webm">
                 <source src="mave_tausta.mp4" type="video/mp4">
@@ -2164,7 +2095,7 @@
                         <p>Yksilöllinen treenien ohjelmointi sekä ruokavalio sinun tavoitteiden mukaan. Step2fit sovellus treenien kirjaamista ja seurantaa varten, missä myös liikkeiden ohjevideot. Tekniikoiden analysointi ja ohjeistus etänä, sekä erilliset tekniikkavideot tarvittaessa.</p>
                         <p>Valmentajan jatkuva tuki whatsappin välityksellä.</p>
                         <p>Viikottainen treenien seuranta ja treenien päivittäminen viikkotasolla.</p>
-                        <p>Hinta 190€ ensimmäinen kuukausi, jonka jälkeen 150€ / kk. (sis. alv 25.5%)</p>
+                        <p>Hinta 150€ / kk. (sis. alv 25.5%)</p>
                         <p>Mahdollisuus erillisiin lähitapaamisiin (esim. tekniikan läpikäynti) hintaan 75€/60-90min. (sis. alv 25.5%)</p>
                     </div>
                 </div>
@@ -2544,7 +2475,93 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
         </div>
     </footer>
 
+    <!-- gdpr hässäkkä (SIIRRETTY ALAS DEFEROITUNA) -->
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="silktide-consent-manager.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="silktide-consent-manager.css"></noscript>
+    
+    <script src="silktide-consent-manager.js"></script>
     <script>
+    // Ajetaan tämä vasta kun sivu on latautunut
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof silktideCookieBannerManager !== 'undefined') {
+            silktideCookieBannerManager.updateCookieBannerConfig({
+              background: {
+                showBackground: true
+              },
+              cookieIcon: {
+                position: "bottomRight"
+              },
+              cookieTypes: [
+                {
+                  id: "necessary",
+                  name: "Välttämättömät",
+                  description: "<p>Nämä evästeet ovat pakollisia sivuston toiminnalle, eikä niitä voi poistaa käytöstä.</p>",
+                  required: true,
+                  onAccept: function() {
+                    console.log('Välttämättömät hyväksytty');
+                  }
+                },
+                {
+                  id: "analytics",
+                  name: "Analytiikka",
+                  description: "<p>Auttaa meitä ymmärtämään kävijämääriä.</p>",
+                  defaultValue: true,
+                  onAccept: function() {
+                    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+                    dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                  },
+                  onReject: function() {
+                    gtag('consent', 'update', { 'analytics_storage': 'denied' });
+                  }
+                },
+                {
+                  id: "advertising",
+                  name: "Markkinointi",
+                  description: "<p>Mainonnan kohdentamiseen liittyvät evästeet.</p>",
+                  onAccept: function() {
+                    gtag('consent', 'update', {
+                      ad_storage: 'granted',
+                      ad_user_data: 'granted',
+                      ad_personalization: 'granted'
+                    });
+                    dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                  },
+                  onReject: function() {
+                    gtag('consent', 'update', {
+                      ad_storage: 'denied',
+                      ad_user_data: 'denied',
+                      ad_personalization: 'denied'
+                    });
+                  }
+                }
+              ],
+              text: {
+                banner: {
+                  description: "<p>Käytämme sivustolla evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme liikennettä.</p>",
+                  acceptAllButtonText: "Hyväksy kaikki",
+                  acceptAllButtonAccessibleLabel: "Hyväksy kaikki evästeet",
+                  rejectNonEssentialButtonText: "Vain välttämättömät",
+                  rejectNonEssentialButtonAccessibleLabel: "Hylkää ei-pakolliset evästeet",
+                  preferencesButtonText: "Asetukset",
+                  preferencesButtonAccessibleLabel: "Muokkaa asetuksia"
+                },
+                preferences: {
+                  title: "Muokkaa evästeasetuksia",
+                  description: "<p>Voit valita, mitä evästeitä sallit.</p>",
+                  creditLinkText: "Hanki tämä banneri ilmaiseksi",
+                  creditLinkAccessibleLabel: "Hanki tämä banneri ilmaiseksi"
+                }
+              }
+            });
+        }
+    });
+    </script>
+
+    <script>
+        // Kun fontit latautuvat, lisätään luokka bodyyn (vähentää FOIT)
+        document.fonts.ready.then(function() {
+            document.body.classList.add('fonts-loaded');
+        });
 
         // Mobile Menu Toggle
         function toggleMenu() {
