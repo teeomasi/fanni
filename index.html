@@ -46,7 +46,7 @@
     <style>
         /* CSS Variables */
         :root {
-            --brand-red: #888888;
+            --brand-accent: #888888; /* Korjattu nimi: ei ole punainen vaan harmaa */
             --brand-dark: #0D1117;
             --brand-gray: #1F2937;
             --brand-light: #F9FAFB;
@@ -131,7 +131,7 @@
         }
 
         body::selection {
-            background-color: var(--brand-red);
+            background-color: var(--brand-accent);
             color: white;
         }
 
@@ -216,11 +216,11 @@
         }
 
         .nav-logo:hover .nav-logo-link {
-            color: var(--brand-red);
+            color: var(--brand-accent);
         }
 
         .nav-logo-accent {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             transition: color 0.3s;
         }
 
@@ -262,7 +262,7 @@
         }
 
         .nav-link:hover {
-            color: var(--brand-red);
+            color: var(--brand-accent);
         }
 
         .nav-link-underline {
@@ -271,7 +271,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--brand-red);
+            background-color: var(--brand-accent);
             transition: width 0.3s;
         }
 
@@ -383,7 +383,7 @@
         }
 
         .nav-mobile-link-accent {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
         }
 
@@ -397,6 +397,7 @@
             overflow: hidden;
         }
 
+        /* KORJATTU: Video Container Logic */
         .video-container {
             position: absolute;
             top: 0;
@@ -405,6 +406,10 @@
             height: 100%;
             overflow: hidden;
             z-index: 0;
+            /* Kuva asetetaan taustalle fallbackina */
+            background-image: url('mave1.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
         .video-container video {
@@ -414,6 +419,14 @@
             top: 0;
             left: 0;
             object-fit: cover;
+            /* Piilotetaan oletuksena (ettei näy play-nappia mobiilissa) */
+            opacity: 0; 
+            transition: opacity 1.5s ease; /* Pehmeä siirtymä */
+        }
+        
+        /* Tämä luokka lisätään JS:llä kun video oikeasti pyörii */
+        .video-container video.is-playing {
+            opacity: 1;
         }
 
         .hero-overlay {
@@ -525,7 +538,7 @@
         }
 
         .hero-title-gradient {
-            background: linear-gradient(to right, var(--brand-red), white);
+            background: linear-gradient(to right, var(--brand-accent), white);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -645,11 +658,11 @@
         }
 
         .hero-button-secondary:hover {
-            border-color: var(--brand-red);
+            border-color: var(--brand-accent);
         }
 
         .hero-button-secondary:hover span {
-            color: var(--brand-red);
+            color: var(--brand-accent);
         }
 
         .hero-scroll-indicator {
@@ -669,7 +682,7 @@
 
         /* Marquee Banner */
         .marquee-banner {
-            background-color: var(--brand-red);
+            background-color: var(--brand-accent);
             padding: 0.5rem 0;
             overflow: hidden;
             border-top: 1px solid #374151;
@@ -769,7 +782,7 @@
         }
 
         .services-label {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
             letter-spacing: 0.2em;
             font-size: 0.75rem;
@@ -804,7 +817,7 @@
         .services-divider {
             width: 5rem;
             height: 0.25rem;
-            background-color: var(--brand-red);
+            background-color: var(--brand-accent);
             margin: 1rem auto 0;
             border-radius: 9999px;
         }
@@ -850,12 +863,12 @@
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px -10px rgba(136, 136, 136, 0.3);
-            border-color: var(--brand-red);
+            border-color: var(--brand-accent);
             z-index: 10;
         }
 
         .service-card-featured {
-            border: 2px solid var(--brand-red);
+            border: 2px solid var(--brand-accent);
             box-shadow: 0 0 30px rgba(136, 136, 136, 0.15);
         }
 
@@ -1089,7 +1102,7 @@
         }
 
         .about-content-label {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
             letter-spacing: 0.05em;
             font-size: 0.75rem;
@@ -1159,7 +1172,7 @@
         }
 
         .about-stat-card:hover {
-            border-color: var(--brand-red);
+            border-color: var(--brand-accent);
         }
 
         .about-stat-card-wide {
@@ -1179,7 +1192,7 @@
         }
 
         .about-stat-icon {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-size: 1rem;
             margin-right: 0.5rem;
         }
@@ -1224,7 +1237,7 @@
 
         .about-stat-value {
             display: block;
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
             font-size: 1.125rem;
         }
@@ -1269,7 +1282,7 @@
         }
 
         .faq-label {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
             letter-spacing: 0.2em;
             font-size: 0.75rem;
@@ -1298,7 +1311,7 @@
         .faq-divider {
             width: 5rem;
             height: 0.25rem;
-            background-color: var(--brand-red);
+            background-color: var(--brand-accent);
             margin: 1rem auto 0;
             border-radius: 9999px;
         }
@@ -1345,7 +1358,7 @@
         }
 
         .faq-icon {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             transition: transform 0.3s;
         }
 
@@ -1442,7 +1455,7 @@
         }
 
         .testimonials-label {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
             letter-spacing: 0.05em;
             font-size: 0.75rem;
@@ -1594,7 +1607,7 @@
         }
 
         .contact-label {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             font-weight: bold;
             letter-spacing: 0.05em;
             font-size: 0.75rem;
@@ -1685,7 +1698,7 @@
         }
 
         .contact-card:hover {
-            border-color: var(--brand-red);
+            border-color: var(--brand-accent);
         }
 
         .contact-icon-wrapper {
@@ -1703,7 +1716,7 @@
 
         .contact-icon {
             font-size: 1.25rem;
-            color: var(--brand-red);
+            color: var(--brand-accent);
         }
 
         .contact-card-title {
@@ -1799,7 +1812,7 @@
         }
 
         .footer-logo-accent {
-            color: var(--brand-red);
+            color: var(--brand-accent);
         }
 
         .footer-social {
@@ -1822,7 +1835,7 @@
         }
 
         .footer-social-link:hover {
-            color: var(--brand-red);
+            color: var(--brand-accent);
             transform: scale(1.1);
         }
 
@@ -1912,7 +1925,7 @@
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--brand-red);
+            background: var(--brand-accent);
         }
 
         /* Cookie Banner */
@@ -1992,8 +2005,8 @@
 
         <!-- Video Container -->
         <div class="video-container">
-            <!-- Korjattu Accessibility: aria-hidden="true", koska koriste -->
-            <video autoplay loop muted playsinline poster="mave1.jpg" aria-hidden="true" tabindex="-1">
+            <!-- Korjattu Accessibility: aria-hidden="true", koska koriste. ID lisätty kontrollointia varten -->
+            <video id="hero-video" autoplay loop muted playsinline aria-hidden="true" tabindex="-1">
                 <!-- TÄRKEÄÄ: WebM ensin (pienempi tiedosto = nopeampi lataus) -->
                 <source src="mave_tausta.webm" type="video/webm">
                 <source src="mave_tausta.mp4" type="video/mp4">
@@ -2131,8 +2144,8 @@
 
                     <div class="about-image-container">
                         <!-- TÄRKEÄ OPTIMOINTI: Width ja Height lisätty CLS-virheen estämiseksi -->
-                        <img src="kyykky.jpg"
-                             alt="Fanni Savela Kyykky"
+                        <img src="kyykky.jpg" 
+                             alt="Fanni Savela Kyykky" 
                              width="800" height="500"
                              onerror="this.onerror=null;this.src='https://placehold.co/800x500/888888/0D1117?text=FANNI+SAVELA';"
                              class="about-image">
@@ -2146,7 +2159,7 @@
                <h3 class="about-content-title">FANNI SAVELA<br>Voimanostaja ja valmentaja</h3>
 
                     <p class="about-content-text">
-                        Olen Fanni Savela, fysioterapeutti-opiskelija, koulutettu personal trainer ja kansainvälisen tason voimanostaja. Nämä osa-alueet yhdessä mahdollistavat monipuolisen valmennuksen, jossa otetaan huomioon sekä suorituskyvyn kehittäminen, että kehon hyvinvointi pitkällä aikavälillä.
+                        Olen Fanni Savela, fysioterapeutti-opiskelija, koulutettu personal trainer ja kansainvälisen tason voimanostaja. Nämä osa-alueet yhdessä mahdollistavat monipuolisen valmennuksen, jossa otetaan huomioon sekä suorituskyvyn kehittäminen, että kehon hyvinvointi pitkällä aikavälillä. 
 
 <br><br> Uskon vahvasti, että jokainen voi saavuttaa tavoitteensa oikeanlaisella, henkilökohtaisella suunnitelmalla.
                     </p>
@@ -2427,7 +2440,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
 
             <p class="contact-description">
                 Jos olet kiinnostunut valmennuksesta tai sinulla on kysyttävää, lähetä sähköpostia. Vastaan sinulle henkilökohtaisesti.
-            <br> <br>Viestin lähettäminen ei sido sinua mihinkään.
+            <br> <br>Viestin lähettäminen ei sido sinua mihinkään. 
             </p>
 
             <!-- KORTTI-LAYOUT (PIENENNETTY) -->
@@ -2519,17 +2532,17 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
                   name: "Markkinointi",
                   description: "<p>Mainonnan kohdentamiseen liittyvät evästeet.</p>",
                   onAccept: function() {
-                    gtag('consent', 'update', {
+                    gtag('consent', 'update', { 
                       ad_storage: 'granted',
-                      ad_user_data: 'granted',
+                      ad_user_data: 'granted', 
                       ad_personalization: 'granted'
                     });
                     dataLayer.push({ 'event': 'consent_accepted_advertising' });
                   },
                   onReject: function() {
-                    gtag('consent', 'update', {
+                    gtag('consent', 'update', { 
                       ad_storage: 'denied',
-                      ad_user_data: 'denied',
+                      ad_user_data: 'denied', 
                       ad_personalization: 'denied'
                     });
                   }
@@ -2566,7 +2579,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
         // Mobile Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-
+            
             if (menu.classList.contains('hidden')) {
                 menu.classList.remove('hidden');
                 menu.classList.add('show');
@@ -2578,7 +2591,7 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
         // Toggle Read More Functionality
         function toggleReadMore(elementId, btn) {
             const content = document.getElementById(elementId);
-
+            
             // Tarkistetaan onko auki
             if (content.classList.contains('open')) {
                 // Jos auki -> suljetaan
@@ -2643,6 +2656,26 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
 
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => observer.observe(el));
+            
+            // --- VIDEO AUTOPLAY DETECTION LOGIC ---
+            // Yritetään käynnistää video. Jos se onnistuu, näytetään video.
+            // Jos se estetään (mobiili virransäästö), video pysyy piilossa (opacity: 0) ja taustakuva näkyy.
+            const heroVideo = document.getElementById('hero-video');
+            if (heroVideo) {
+                const playPromise = heroVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Autoplay alkoi! Näytetään video.
+                        heroVideo.classList.add('is-playing');
+                    })
+                    .catch(error => {
+                        // Autoplay estettiin.
+                        // Ei tehdä mitään, video pysyy piilossa ja taustakuva näkyy.
+                        // console.log("Autoplay estetty, näytetään taustakuva.");
+                    });
+                }
+            }
         });
 
     </script>
