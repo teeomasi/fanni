@@ -319,6 +319,9 @@
             border-radius: 0.375rem;
             color: #9ca3af;
             transition: color 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
         }
 
         .nav-mobile-button:hover {
@@ -335,7 +338,7 @@
             top: 100%;
             left: 0;
             width: 100%;
-            background-color: rgba(13, 17, 23, 0.8);
+            background-color: rgba(13, 17, 23, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid #1f2937;
@@ -351,9 +354,7 @@
             display: block;
         }
 
-        .nav-mobile-menu.hidden {
-            display: none;
-        }
+        /* Removed unnecessary .hidden class from CSS to simplify logic */
 
         .nav-mobile-list {
             padding: 0.5rem 0.75rem;
@@ -2563,18 +2564,12 @@ Valmennuksen kesto on joustava, jotta se palvelee sinua parhaiten eri elämänti
             document.body.classList.add('fonts-loaded');
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle - FIX: Käytä togglea suoraan 'show'-luokkaan
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                menu.classList.add('show');
-            } else {
-                menu.classList.add('hidden');
-                menu.classList.remove('show');
-            }
+            menu.classList.toggle('show');
         }
+
         // Toggle Read More Functionality
         function toggleReadMore(elementId, btn) {
             const content = document.getElementById(elementId);
