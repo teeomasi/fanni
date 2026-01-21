@@ -421,7 +421,8 @@
             object-fit: cover;
             /* Piilotetaan oletuksena (ettei näy play-nappia mobiilissa) */
             opacity: 0; 
-            transition: opacity 1.5s ease; /* Pehmeä siirtymä */
+            /* NOPEUTETTU TRANSITIO (oli 1.5s) */
+            transition: opacity 0.8s ease; 
         }
         
         /* Tämä luokka lisätään JS:llä kun video oikeasti pyörii */
@@ -2006,7 +2007,8 @@
         <!-- Video Container -->
         <div class="video-container">
             <!-- Korjattu Accessibility: aria-hidden="true", koska koriste. ID lisätty kontrollointia varten -->
-            <video id="hero-video" autoplay loop muted playsinline aria-hidden="true" tabindex="-1">
+            <!-- LISÄTTY: preload="auto" ja fetchpriority="high" -->
+            <video id="hero-video" preload="auto" fetchpriority="high" autoplay loop muted playsinline aria-hidden="true" tabindex="-1">
                 <!-- TÄRKEÄÄ: WebM ensin (pienempi tiedosto = nopeampi lataus) -->
                 <source src="mave_tausta.webm" type="video/webm">
                 <source src="mave_tausta.mp4" type="video/mp4">
